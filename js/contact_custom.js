@@ -357,3 +357,37 @@ jQuery(document).ready(function($)
 		});
 	}
 });
+
+
+/* configuracion del formulario de contactos*/
+
+document.getElementById("contactForm").addEventListener("submit", function(event){
+    event.preventDefault();
+
+    var form = event.target;
+    var data = new FormData(form);
+    
+    document.getElementById("review_submit").disabled = true;
+    document.getElementById("review_submit").innerText = "Enviando...";
+
+    fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        document.getElementById("review_submit").disabled = false;
+        document.getElementById("review_submit").innerText = "Enviar mensaje";
+        if (response.ok) {
+            document.getElementById("form_status").innerHTML = "<p>Mensaje enviado exitosamente!</p>";
+            form.reset();
+        } else {
+            document.getElementById("form_status").innerHTML = "<p>Hubo un error al enviar el mensaje.</p>";
+        }
+    }).catch(error => {
+        document.getElementById("review_submit").disabled = false;
+        document.getElementById("review_submit").innerText = "Enviar mensaje";
+        document.getElementById("form_status").innerHTML = "<p>Hubo un error al enviar el mensaje.</p>";
+    });
+});

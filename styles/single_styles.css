@@ -990,6 +990,7 @@ section
 {
 	font-weight: 500px;
 	line-height: 30px;
+
 }
 .product_details_title p
 {
@@ -1028,7 +1029,7 @@ section
 	color: #b9b4c7;
 	text-decoration: line-through;
 	line-height: 30px;
-	margin-top: 21px;
+	margin-top: 5px;
 }
 .product_price
 {
